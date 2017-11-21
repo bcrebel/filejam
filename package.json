@@ -1,0 +1,38 @@
+{
+  "name": "filejam",
+  "version": "1.0.0",
+  "description": "Automatic asset uploads",
+  "main": "console.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcrebel/filejam.git"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "filejam": "console.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "commander": "^2.11.0",
+    "file-type": "^7.2.0",
+    "handlebars": "^4.0.11",
+    "image-size": "^0.6.1",
+    "junk": "^2.1.0",
+    "lowdb": "^1.0.0",
+    "open": "0.0.5",
+    "prompt": "^1.0.0",
+    "read-chunk": "^2.1.0",
+    "request": "^2.83.0",
+    "selenium-webdriver": "^3.6.0"
+  },
+  "devDependencies": {},
+  "author": "Carron White",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bcrebel/filejam/issues"
+  },
+  "homepage": "https://github.com/bcrebel/filejam#readme"
+}

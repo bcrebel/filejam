@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			
+			img {
+				margin-right: 20px;
+				width: 75px;
+				height: calc(400px / 3);
+				float: left;
+			}
+
+			h1 {
+				margin-bottom: 15px;
+			}
+
+			.unit {
+				width: 50%;
+				float: left;
+				margin-bottom: 50px;
+			}
+
+			video {
+				width: 75px;
+				margin-right: 20px;
+				float: left;
+			}
+
+			p:first-of-type {
+				font-weight: bold;
+			}
+
+			p {
+				float: left;
+				display: inline-block;
+				margin: 5px 0;
+			}
+
+			.info {
+				width: calc(100% - 100px);
+				float: left;
+			}
+
+			.videos {
+				clear: both;
+			}
+
+			.images, 
+			.videos {
+				margin-left: 25px;
+			}
+		</style>
+	</head>
+	<body>
+		{{#if images}}
+			<div class="images">
+				<h1>Images</h1>
+				{{#each images}}
+				<div class="unit">
+					<img style="background-image: url('{{this}}'); background-size:cover;">
+					<div class="info">
+						<p>{{@key}}</p>
+						<p>{{this}}</p>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		{{/if}}
+		
+		{{#if videos}}
+			<div class="videos">
+				<h1>Videos</h1>
+				{{#each videos}}
+				<div class="unit">
+					<video width="75" height="133.3" controls>
+						<source src="{{this.[1]}}" type="video/mp4">
+					</video>
+					<div class="info">
+						<p>{{@key}}</p>
+						<p>{{this.[0]}}</p>
+						<p>{{this.[1]}}</p>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		{{/if}}
+	</body>
+</html>
