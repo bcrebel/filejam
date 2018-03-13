@@ -26,7 +26,8 @@
     "prompt": "^1.0.0",
     "read-chunk": "^2.1.0",
     "request": "^2.83.0",
-    "selenium-webdriver": "^3.6.0"
+    "selenium-webdriver": "^3.6.0",
+    "sort-keys": "^2.0.0"
   },
   "devDependencies": {},
   "author": "Carron White",
