@@ -9,6 +9,7 @@ const readChunk = require('read-chunk')
 const fileType = require('file-type')
 const junk = require('junk')
 const _ = require('lodash')
+const sortKeys = require('sort-keys');
 const { Builder, By, Key, until } = require('selenium-webdriver')
 const chromeDriver = require('selenium-webdriver/chrome')
 const low = require('lowdb')
@@ -17,11 +18,8 @@ const adapter = new FileSync('db.json')
 const db = low(adapter)
 const handlebars = require('handlebars')
 const open = require('open')
-const options = new chromeDriver.Options()
-options.addArguments('headless')
 const driver = new Builder()
 	.forBrowser('chrome')
-	.setChromeOptions(options)
 	.build()
 			
 let settings = {}
@@ -112,6 +110,7 @@ let assetUpload = (file, idx, csrf, type, final) => { // STEP 4
 				
 				// If the last image has been uploaded and there are no videos
 				if(final && logVideo === false) {
+					result.images = sortKeys(result.images)
 					console.log(result)
 					console.timeEnd('Asset upload duration');
 					createPage(result)
@@ -155,7 +154,7 @@ let assetUpload = (file, idx, csrf, type, final) => { // STEP 4
 								console.log('Checking if transcoding is complete...')
 								
 								if(response.statusCode == '200') {
-									vidLinks.push(`${JSON.parse(body).transcodings[3].full_url}`)
+									vidLinks.push(`${JSON.parse(body).transcodings[0].full_url}`)
 									vidLinks.push(`${JSON.parse(body).transcodings[1].full_url}`)
 
 								} else {
@@ -167,10 +166,12 @@ let assetUpload = (file, idx, csrf, type, final) => { // STEP 4
 								result.videos[`${file.replace(/^.*[\\\/]/, '')}`] = vidLinks
 								
 								if(final) { 
-									console.log(result)
+									result.videos = sortKeys(result.videos);
+									if(result.images != undefined) result.images = sortKeys(result.images)
+									console.log(result);
 									console.timeEnd('Asset upload duration');
-									createPage(result)
-									driver.quit()
+									createPage(result);
+									driver.quit();
 								}
 							})
 						}
@@ -235,10 +236,6 @@ let arrangeFiles = (input, csrf) => {
 			videos.push(file) 
 		} 
 	})
-
-	// Maintain numerical order 
-	videos = _.sortBy(videos)
-	images = _.sortBy(images)
 
 	// Upload each image file
 	images.forEach((file, idx) => {
