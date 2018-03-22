@@ -155,7 +155,7 @@ let assetUpload = (file, idx, csrf, type, final) => { // STEP 4
 								
 								if(response.statusCode == '200') {
 									vidLinks.push(`${JSON.parse(body).transcodings[0].full_url}`)
-									vidLinks.push(`${JSON.parse(body).transcodings[1].full_url}`)
+									vidLinks.push(`${JSON.parse(body).transcodings[2].full_url}`)
 
 								} else {
 									vidLinks.push('video upload errored')

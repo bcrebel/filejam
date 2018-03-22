@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "chromedriver": "^2.36.0",
     "commander": "^2.11.0",
     "file-type": "^7.2.0",
     "handlebars": "^4.0.11",
